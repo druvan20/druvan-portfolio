@@ -19,20 +19,20 @@ npm run build
 npm run preview
 ```
 
-## Deploy (Netlify)
-1. Push this repo to GitHub.
-2. In [Netlify](https://app.netlify.com): **Add new site → Import from Git** → select the repo.
-3. Build settings (auto-read from `netlify.toml`):
-   - Build command: `npm run build`
-   - Publish directory: `dist`
-4. Deploy. Your site will get a `*.netlify.app` URL (custom domain optional).
+## Deploy (GitHub Pages — free)
+This repo includes `.github/workflows/deploy-pages.yml`.
 
-After the first live deploy, submit the contact form once and confirm FormSubmit’s activation email.
+1. Push to `main` (already set up).
+2. Repo **Settings → Pages → Build and deployment → Source: GitHub Actions**.
+3. Open the **Actions** tab → wait for **Deploy GitHub Pages** to finish (green).
+4. Site URL: https://druvan20.github.io/druvan-portfolio/
 
-## Deploy (GitHub Pages)
-1. If the site is a project page (`username.github.io/repo`), set `base: '/repo/'` in `vite.config.ts`.
-2. For a user site root, keep `base: '/'`.
-3. Build with `npm run build` and publish the `dist/` folder (Actions or `gh-pages`).
+Vite `base` is set to `/druvan-portfolio/` for this project Pages URL.
+
+## Deploy (Netlify — also free)
+1. In [Netlify](https://app.netlify.com): **Add new site → Import from Git** → select this repo.
+2. Build settings (from `netlify.toml`): `npm run build` → publish `dist`.
+3. If using Netlify at the site root (`*.netlify.app`), change `base` in `vite.config.ts` back to `'/'` (or use an env-based base).
 
 ## Contact form
 The Deploy section includes an interactive **MSG UPLINK** form. Submissions go to `druvangurukar20@gmail.com` via [FormSubmit](https://formsubmit.co).

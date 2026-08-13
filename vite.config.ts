@@ -2,6 +2,8 @@ import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 
 export default defineConfig({
+  // Required for https://druvan20.github.io/druvan-portfolio/
+  base: '/druvan-portfolio/',
   plugins: [react()],
   build: {
     chunkSizeWarningLimit: 900,

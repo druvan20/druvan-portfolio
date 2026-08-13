@@ -1,0 +1,185 @@
+.section {
+  position: relative;
+}
+
+.header {
+  margin-bottom: 1.75rem;
+}
+
+.kicker {
+  margin: 0.35rem 0 0;
+  color: var(--muted);
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  letter-spacing: 0.08em;
+}
+
+.timeline {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+
+.card {
+  display: grid;
+  grid-template-columns: 48px 1fr;
+  gap: 0.9rem;
+  align-items: stretch;
+}
+
+.rail {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.node {
+  width: 2.2rem;
+  height: 2.2rem;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  border: 1px solid color-mix(in srgb, var(--edu-accent, var(--accent)) 70%, transparent);
+  background: color-mix(in srgb, var(--edu-accent, var(--accent)) 16%, transparent);
+  color: var(--edu-accent, var(--accent));
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  flex-shrink: 0;
+}
+
+.line {
+  width: 2px;
+  flex: 1;
+  min-height: 1.5rem;
+  margin: 0.35rem 0 0;
+  background: linear-gradient(
+    180deg,
+    color-mix(in srgb, var(--edu-accent, var(--accent)) 55%, transparent),
+    rgba(92, 225, 230, 0.2)
+  );
+  border-radius: 2px;
+}
+
+.body {
+  border: 1px solid var(--line);
+  border-radius: calc(var(--radius) + 2px);
+  background: var(--glass);
+  backdrop-filter: blur(14px);
+  padding: 1.2rem 1.3rem 1.25rem;
+  position: relative;
+  overflow: hidden;
+  transition:
+    border-color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.body:hover {
+  border-color: color-mix(in srgb, var(--edu-accent, var(--accent)) 45%, transparent);
+  transform: translateY(-2px);
+}
+
+.body::before {
+  content: '';
+  position: absolute;
+  inset: 0 auto auto 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    var(--edu-accent, var(--accent)),
+    transparent 70%
+  );
+}
+
+.top {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-bottom: 0.75rem;
+}
+
+.stage {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.14em;
+  color: var(--hud);
+}
+
+.year {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  color: var(--muted);
+}
+
+.main {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 0.95rem;
+}
+
+.level {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  letter-spacing: 0.04em;
+}
+
+.school {
+  margin: 0.4rem 0 0;
+  color: var(--muted);
+}
+
+.focus {
+  margin: 0.45rem 0 0;
+  color: var(--edu-accent, var(--accent));
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  letter-spacing: 0.08em;
+}
+
+.scoreBlock {
+  text-align: right;
+  min-width: 6.5rem;
+  padding: 0.65rem 0.8rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid color-mix(in srgb, var(--edu-accent, var(--accent)) 35%, transparent);
+  background: color-mix(in srgb, var(--edu-accent, var(--accent)) 10%, transparent);
+}
+
+.score {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  color: var(--edu-accent, var(--accent));
+}
+
+.scoreLabel {
+  margin: 0.2rem 0 0;
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.highlights {
+  margin: 0;
+  padding-left: 1.1rem;
+  color: var(--text);
+}
+
+.highlights li + li {
+  margin-top: 0.35rem;
+}
+
+@media (max-width: 640px) {
+  .card {
+    grid-template-columns: 36px 1fr;
+  }
+
+  .scoreBlock {
+    text-align: left;
+  }
+}

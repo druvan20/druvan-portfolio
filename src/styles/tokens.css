@@ -1,0 +1,23 @@
+:root {
+  --void: #06080d;
+  --navy: #0e141d;
+  --navy-2: #161e2b;
+  --accent: #ff4655;
+  --accent-dim: #c23a46;
+  --agent-accent: #ff4655;
+  --agent-glow: #ff8892;
+  --hud: #5ce1e6;
+  --text: #f4f1ea;
+  --muted: #9aa3b2;
+  --line: rgba(244, 241, 234, 0.1);
+  --glow: rgba(255, 70, 85, 0.28);
+  --glass: rgba(14, 20, 29, 0.55);
+  --glass-strong: rgba(14, 20, 29, 0.78);
+  --radius: 14px;
+  --radius-sm: 10px;
+  --font-display: 'Orbitron', sans-serif;
+  --font-body: 'Rajdhani', sans-serif;
+  --font-mono: 'Share Tech Mono', monospace;
+  --max: 1120px;
+  --nav-h: 68px;
+}

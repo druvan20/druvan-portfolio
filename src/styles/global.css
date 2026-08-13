@@ -1,0 +1,197 @@
+@import './tokens.css';
+@import './animations.css';
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: 1.08rem;
+  line-height: 1.6;
+  font-weight: 500;
+  background:
+    radial-gradient(
+      ellipse 80% 50% at 85% 0%,
+      color-mix(in srgb, var(--agent-accent, var(--accent)) 18%, transparent),
+      transparent 50%
+    ),
+    radial-gradient(ellipse 60% 40% at 0% 30%, rgba(92, 225, 230, 0.06), transparent 45%),
+    linear-gradient(180deg, #06080d 0%, #0a1018 50%, #06080d 100%);
+  background-attachment: fixed;
+  -webkit-font-smoothing: antialiased;
+  transition: background 0.6s ease;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.22;
+  background-image:
+    linear-gradient(var(--line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--line) 1px, transparent 1px);
+  background-size: 64px 64px;
+  mask-image: radial-gradient(ellipse at 50% 20%, black 10%, transparent 70%);
+}
+
+#root {
+  position: relative;
+  z-index: 1;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+button {
+  font: inherit;
+  cursor: pointer;
+  border: none;
+  background: none;
+  color: inherit;
+}
+
+.container {
+  width: min(100% - 2.75rem, var(--max));
+  margin-inline: auto;
+}
+
+.section {
+  padding: 6rem 0;
+  scroll-margin-top: calc(var(--nav-h) + 0.75rem);
+}
+
+.section-code {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  margin-bottom: 0.7rem;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--hud);
+}
+
+.section-code::before {
+  content: '';
+  width: 18px;
+  height: 2px;
+  background: var(--agent-accent, var(--accent));
+  border-radius: 2px;
+}
+
+.section-code::after {
+  display: none;
+}
+
+.section-title {
+  margin: 0 0 0.65rem;
+  font-family: var(--font-display);
+  font-size: clamp(1.65rem, 2.8vw, 2.15rem);
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+
+.section-lead {
+  margin: 0 0 2.25rem;
+  max-width: 38rem;
+  color: var(--muted);
+  font-size: 1.12rem;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  min-height: 2.7rem;
+  padding: 0.55rem 1.3rem;
+  border-radius: 999px;
+  font-family: var(--font-display);
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  transition:
+    background 0.2s ease,
+    color 0.2s ease,
+    border-color 0.2s ease,
+    box-shadow 0.2s ease,
+    transform 0.2s ease;
+}
+
+.btn-primary {
+  background: var(--agent-accent, var(--accent));
+  color: #0a0e14;
+  box-shadow: 0 8px 28px var(--glow);
+}
+
+.btn-primary:hover {
+  filter: brightness(1.08);
+  transform: translateY(-1px);
+}
+
+.btn-ghost {
+  border: 1px solid color-mix(in srgb, var(--agent-accent, var(--accent)) 45%, transparent);
+  color: var(--text);
+  background: color-mix(in srgb, var(--agent-accent, var(--accent)) 6%, transparent);
+  backdrop-filter: blur(8px);
+}
+
+.btn-ghost:hover {
+  background: color-mix(in srgb, var(--agent-accent, var(--accent)) 14%, transparent);
+  border-color: var(--agent-accent, var(--accent));
+  box-shadow: 0 0 18px var(--glow);
+}
+
+.chip {
+  display: inline-flex;
+  padding: 0.32rem 0.7rem;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: rgba(22, 30, 43, 0.65);
+  font-family: var(--font-mono);
+  font-size: 0.74rem;
+  letter-spacing: 0.03em;
+  color: var(--text);
+  transition:
+    border-color 0.2s ease,
+    color 0.2s ease,
+    background 0.2s ease;
+}
+
+.chip:hover {
+  border-color: color-mix(in srgb, var(--agent-accent, var(--accent)) 55%, transparent);
+  color: var(--agent-accent, var(--accent));
+  background: color-mix(in srgb, var(--agent-accent, var(--accent)) 8%, transparent);
+}
+
+@media (max-width: 720px) {
+  .section {
+    padding: 4.25rem 0;
+  }
+
+  .container {
+    width: min(100% - 1.35rem, var(--max));
+  }
+}

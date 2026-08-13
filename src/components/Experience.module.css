@@ -1,0 +1,269 @@
+.section {
+  position: relative;
+}
+
+.header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1.75rem;
+}
+
+.kicker {
+  margin: 0.35rem 0 0;
+  color: var(--muted);
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  letter-spacing: 0.08em;
+}
+
+.badge {
+  display: inline-flex;
+  padding: 0.35rem 0.75rem;
+  border-radius: 999px;
+  border: 1px solid rgba(92, 225, 230, 0.35);
+  background: rgba(92, 225, 230, 0.1);
+  color: var(--hud);
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+}
+
+.bento {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  grid-template-areas:
+    'hero flow'
+    'tracks flow';
+  gap: 1rem;
+}
+
+.card {
+  border: 1px solid var(--line);
+  border-radius: calc(var(--radius) + 2px);
+  background: var(--glass);
+  backdrop-filter: blur(14px);
+  padding: 1.35rem 1.4rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.card::before {
+  content: '';
+  position: absolute;
+  inset: 0 auto auto 0;
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(90deg, rgba(255, 70, 85, 0.5), transparent 70%);
+}
+
+.heroCard {
+  grid-area: hero;
+}
+
+.flowCard {
+  grid-area: flow;
+}
+
+.tracksCard {
+  grid-area: tracks;
+}
+
+.cardLabel {
+  margin: 0 0 1rem;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--hud);
+}
+
+.heroTop {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 0.9rem;
+}
+
+.program {
+  margin: 0 0 0.35rem;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.12em;
+  color: var(--hud);
+}
+
+.company {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  letter-spacing: 0.04em;
+}
+
+.role {
+  margin: 0.4rem 0 0;
+  color: var(--accent);
+  font-weight: 600;
+}
+
+.meta {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.3rem;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+
+.summary {
+  margin: 0 0 1rem;
+  color: var(--text);
+  font-size: 1.02rem;
+  line-height: 1.6;
+}
+
+.highlights {
+  margin: 0;
+  padding-left: 1.1rem;
+  color: var(--muted);
+}
+
+.highlights li + li {
+  margin-top: 0.4rem;
+}
+
+.flow {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.flowStep {
+  display: grid;
+  grid-template-columns: 42px 1fr;
+  gap: 0.85rem;
+  min-height: 4.5rem;
+}
+
+.flowRail {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.flowNode {
+  width: 2.1rem;
+  height: 2.1rem;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  border: 1px solid rgba(255, 70, 85, 0.55);
+  background: rgba(255, 70, 85, 0.12);
+  color: var(--accent);
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.04em;
+  flex-shrink: 0;
+}
+
+.flowLine {
+  width: 2px;
+  flex: 1;
+  min-height: 1.4rem;
+  margin: 0.25rem 0;
+  background: linear-gradient(180deg, rgba(255, 70, 85, 0.55), rgba(92, 225, 230, 0.25));
+  border-radius: 2px;
+}
+
+.flowBody h4 {
+  margin: 0.15rem 0 0.3rem;
+  font-family: var(--font-display);
+  font-size: 0.85rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.flowBody p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.92rem;
+  line-height: 1.45;
+}
+
+.trackTabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  margin-bottom: 1rem;
+}
+
+.trackTab {
+  padding: 0.45rem 0.75rem;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background: rgba(6, 8, 13, 0.35);
+  font-family: var(--font-display);
+  font-size: 0.65rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+  transition:
+    border-color 0.2s ease,
+    color 0.2s ease,
+    background 0.2s ease;
+}
+
+.trackTab:hover {
+  color: var(--text);
+  border-color: rgba(255, 70, 85, 0.4);
+}
+
+.trackTabActive {
+  color: #0a0e14;
+  background: var(--accent);
+  border-color: var(--accent);
+}
+
+.trackPanel {
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  background: rgba(6, 8, 13, 0.4);
+  padding: 1rem 1.05rem;
+}
+
+.trackFocus {
+  margin: 0 0 0.85rem;
+  color: var(--text);
+  font-size: 1rem;
+}
+
+.trackChips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+@media (max-width: 900px) {
+  .bento {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      'hero'
+      'flow'
+      'tracks';
+  }
+
+  .header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .meta {
+    align-items: flex-start;
+  }
+}

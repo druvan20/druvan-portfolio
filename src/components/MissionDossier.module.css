@@ -136,6 +136,14 @@
   flex-wrap: wrap;
 }
 
+.liveNote {
+  margin: 0.85rem 0 0;
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  letter-spacing: 0.04em;
+  color: var(--muted);
+}
+
 @keyframes fadeIn {
   from {
     opacity: 0;

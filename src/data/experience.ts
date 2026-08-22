@@ -20,7 +20,7 @@ export const experience = {
   phase: 'Training Phase',
   location: 'Bengaluru',
   summary:
-    'Immersive HashedIn University (HU Spark) boot camp — product-first engineering across AI, cloud-native stacks, and full-stack delivery before project deployment.',
+    'Immersive HashedIn University (HU Spark) boot camp — product-first engineering across AI, cloud-native stacks, AIDLC, and full-stack delivery before project deployment.',
   phases: [
     {
       id: 'onboard',
@@ -38,7 +38,8 @@ export const experience = {
       id: 'tracks',
       step: '03',
       title: 'Tech Tracks',
-      detail: 'Hands-on lanes: GenAI/Python, Java Spring Boot, Angular, and .NET ecosystems.',
+      detail:
+        'Hands-on lanes: GenAI/Python, Prompt Engineering, AIDLC, Advanced DE + AIML, Java, Angular, .NET.',
     },
     {
       id: 'product',
@@ -61,6 +62,26 @@ export const experience = {
       focus: 'Agentic workflows & LLM apps',
     },
     {
+      id: 'prompt',
+      name: 'Prompt Engineering',
+      stack: ['Prompt Design', 'Token Usage', 'Few-shot', 'Evaluation'],
+      focus: 'Token-efficient prompting, structured prompts, and related LLM craft',
+    },
+    {
+      id: 'aidlc',
+      name: 'AIDLC',
+      stack: ['Docs → Spec', 'Story Dev', 'E2E Build', 'Agent Assist'],
+      focus:
+        'AI-augmented SDLC — from requirements documents to scratch builds, stories, and E2E product delivery',
+    },
+    {
+      id: 'aiml-de',
+      name: 'Adv. DE + AIML',
+      stack: ['ML', 'DL', 'NLP Basics', 'Case Studies'],
+      focus:
+        'AIML foundations plus DE with AI — retail forecasting & e-commerce NLP case studies',
+    },
+    {
       id: 'java',
       name: 'Java Spring',
       stack: ['Java 17', 'Spring Boot', 'REST', 'Security'],
@@ -81,7 +102,8 @@ export const experience = {
   ] satisfies TechTrack[],
   highlights: [
     'Product-first thinking with mentor-led reviews',
+    'AIDLC + prompt engineering layered on classic SDLC',
     'Enterprise patterns: microservices, JWT, OWASP, OAuth',
-    'Collaborative track work across full-stack + GenAI',
+    'Collaborative track work across full-stack, GenAI, and AIML/DE',
   ],
 } as const

@@ -15,8 +15,8 @@ export function Projects({ onOpen }: Props) {
           <p className="section-code">MISSIONS</p>
           <h2 className="section-title">Projects</h2>
           <p className="section-lead">
-            Five missions spanning agentic AI, data engineering, .NET, Spring Boot, and Angular.
-            Select a mission to open its dossier.
+            Missions spanning agentic RAG on Databricks, GenAI systems, .NET, Spring Boot, and
+            Angular. Select a mission to open its dossier.
           </p>
         </Reveal>
 

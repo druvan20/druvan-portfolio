@@ -115,18 +115,31 @@ export function MissionDossier({ project, onClose }: Props) {
         </div>
 
         <div className={styles.footer}>
-          <a
-            className="btn btn-primary"
-            href={project.github}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Open repository →
-          </a>
+          {project.liveUrl && (
+            <a
+              className="btn btn-primary"
+              href={project.liveUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Open live app →
+            </a>
+          )}
+          {project.github && (
+            <a
+              className={`btn ${project.liveUrl ? 'btn-ghost' : 'btn-primary'}`}
+              href={project.github}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Open repository →
+            </a>
+          )}
           <button type="button" className="btn btn-ghost" onClick={onClose}>
             Close
           </button>
         </div>
+        {project.liveNote && <p className={styles.liveNote}>{project.liveNote}</p>}
       </div>
     </div>
   )

@@ -5,11 +5,40 @@ export type Project = {
   description: string
   stack: string[]
   highlights: string[]
-  github: string
+  github?: string
+  liveUrl?: string
+  liveNote?: string
   starred?: boolean
 }
 
 export const projects: Project[] = [
+  {
+    id: 'nexus-copilot',
+    missionCode: 'M-00',
+    starred: true,
+    title: 'Nexus Copilot — Agentic RAG on Databricks',
+    description:
+      'Comprehensive Agentic RAG application on Databricks: ingest software requirements, keep a synced Vector Search index, and equip LLMs with advanced tool-calling (SQL execution, web search, Managed MCP). Agents are mathematically graded with MLflow 3 and the full pipeline is scheduled via Lakeflow Jobs. Hosted as a serverless Databricks App (free edition — live only while compute is warm).',
+    stack: [
+      'Databricks',
+      'Agentic RAG',
+      'Vector Search',
+      'MLflow 3',
+      'Lakeflow Jobs',
+      'MCP',
+      'SQL Tools',
+      'Web Search',
+    ],
+    highlights: [
+      'Requirements ingestion → synced Vector Search',
+      'Tool-calling: SQL, web search, Managed MCP',
+      'Agent evaluation with MLflow 3',
+      'Pipeline scheduling via Lakeflow Jobs',
+      'Serverless Databricks App (may sleep when idle)',
+    ],
+    liveUrl: 'https://nexus-copilot-7474657914899240.aws.databricksapps.com',
+    liveNote: 'Databricks serverless — may be offline when compute is cold',
+  },
   {
     id: 'etl',
     missionCode: 'M-01',

@@ -48,8 +48,15 @@ export const experience = {
       detail: 'Team build of an end-to-end product — ideate, ship, demo at Product Expo.',
     },
     {
-      id: 'deploy',
+      id: 'hu4',
       step: '05',
+      title: 'Extended HU4',
+      detail:
+        'Extra depth tracks: Prompt Engineering (tokens & prompts), AIDLC (docs → stories → E2E), Adv. DE + AIML (ML/DL/NLP + case studies).',
+    },
+    {
+      id: 'deploy',
+      step: '06',
       title: 'Deploy Ready',
       detail: 'Transition toward SDE delivery with mentorship, reviews, and enterprise patterns.',
     },

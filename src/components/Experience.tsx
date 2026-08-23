@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { experience } from '../data/experience'
+import { experience, priorExperience } from '../data/experience'
 import { Reveal } from './Reveal'
 import styles from './Experience.module.css'
 
@@ -15,7 +15,9 @@ export function Experience() {
             <div>
               <p className="section-code">OPS</p>
               <h2 className="section-title">Experience</h2>
-              <p className={styles.kicker}>HashedIn University training pipeline · live ops</p>
+              <p className={styles.kicker}>
+                HashedIn University · prior internships · peer mentoring
+              </p>
             </div>
             <span className={styles.badge}>{experience.phase}</span>
           </div>
@@ -90,6 +92,32 @@ export function Experience() {
                 </div>
               </div>
             </article>
+          </div>
+
+          <div className={styles.priorBlock}>
+            <p className={styles.cardLabel}>Prior ops</p>
+            <div className={styles.priorGrid}>
+              {priorExperience.map((role) => (
+                <article key={role.id} className={`${styles.card} ${styles.priorCard}`}>
+                  <div className={styles.priorTop}>
+                    <div>
+                      <h3 className={styles.priorOrg}>{role.org}</h3>
+                      <p className={styles.priorTitle}>{role.title}</p>
+                    </div>
+                    <div className={styles.meta}>
+                      <span>{role.period}</span>
+                      <span>{role.mode}</span>
+                    </div>
+                  </div>
+                  <p className={styles.priorSummary}>{role.summary}</p>
+                  <ul className={styles.highlights}>
+                    {role.highlights.map((h) => (
+                      <li key={h}>{h}</li>
+                    ))}
+                  </ul>
+                </article>
+              ))}
+            </div>
           </div>
         </Reveal>
       </div>

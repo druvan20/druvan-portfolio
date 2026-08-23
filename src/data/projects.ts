@@ -156,4 +156,33 @@ export const projects: Project[] = [
     ],
     github: 'https://github.com/druvan20/Smartwatch_leaderboard_Frontend',
   },
+  {
+    id: 'job-portal',
+    missionCode: 'M-06',
+    title: 'Job Portal — Full-Stack Hiring Platform',
+    description:
+      'Full-stack job portal with search, filtering, application tracking, secure authentication, and role-based access. Built in a team of 8; backend APIs tuned for ~40% faster responses and validated with 30+ users.',
+    stack: ['Java', 'JDBC', 'MySQL', 'React'],
+    highlights: [
+      'Team of 8 · end-to-end hiring flows',
+      'Job search, filters, and application tracking',
+      'Secure auth + role-based access',
+      '~40% faster API responses · 30+ user tests',
+    ],
+    github: 'https://github.com/druvan20/react-job-portal-main',
+  },
+  {
+    id: 'cardio',
+    missionCode: 'M-07',
+    title: 'Early Cardio Disease Detection',
+    description:
+      'Machine learning pipeline that analyzes patient data to flag early heart-disease risk signals and support timely medical follow-up.',
+    stack: ['Python', 'Machine Learning', 'scikit-learn', 'pandas', 'NumPy'],
+    highlights: [
+      'Patient-data risk prediction',
+      'Early-intervention focused ML workflow',
+      'Classic ML stack for tabular clinical signals',
+    ],
+    github: 'https://github.com/druvan20/Early_cardio_disease_detection',
+  },
 ]

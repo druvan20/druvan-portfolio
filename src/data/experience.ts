@@ -12,6 +12,17 @@ export type TechTrack = {
   focus: string
 }
 
+export type PriorRole = {
+  id: string
+  org: string
+  title: string
+  period: string
+  mode: string
+  summary: string
+  highlights: string[]
+}
+
+/** Current role — HashedIn University */
 export const experience = {
   company: 'Hashedin by Deloitte',
   program: 'HashedIn University · HU Spark',
@@ -114,3 +125,45 @@ export const experience = {
     'Collaborative track work across full-stack, GenAI, and AIML/DE',
   ],
 } as const
+
+/** Prior internships + teaching — from earlier resume (no club fluff / certs) */
+export const priorExperience: PriorRole[] = [
+  {
+    id: 'internleap',
+    org: 'InternLeap',
+    title: 'Python Development Intern',
+    period: 'Oct 2023 · 1 month',
+    mode: 'Remote',
+    summary:
+      'Core Python development with a hands-on ML project for car sales analysis.',
+    highlights: [
+      'Built ML workflows with scikit-learn, pandas, and NumPy',
+      'Applied Python for data cleaning, feature prep, and model training',
+    ],
+  },
+  {
+    id: 'ibm-skillsbuild',
+    org: 'IBM SkillsBuild',
+    title: 'Data Analysis & Frontend Development Intern',
+    period: '6 weeks',
+    mode: 'Remote',
+    summary:
+      'Team of 8 delivering a job portal with frontend integration and retail sales analysis.',
+    highlights: [
+      'Collaborated on full-stack Job Portal (auth, roles, application flows)',
+      'Contributed to retail sales analysis for store insights',
+    ],
+  },
+  {
+    id: 'peer-tutor',
+    org: 'Peer Tutor',
+    title: 'DSA & Java Mentor',
+    period: 'July 2024 – Present',
+    mode: 'Campus',
+    summary: 'Teaching Data Structures & Algorithms and Java to peers.',
+    highlights: [
+      'Guided problem-solving and core Java fundamentals',
+      'Reinforced DSA patterns through structured practice',
+    ],
+  },
+]

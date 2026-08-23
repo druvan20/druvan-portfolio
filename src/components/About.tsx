@@ -12,7 +12,7 @@ const focusAreas = [
 const stats = [
   { value: '9.5', unit: 'CGPA', label: 'VVCE Mysore' },
   { value: 'SDE1', unit: 'Trainee', label: 'Hashedin by Deloitte' },
-  { value: '6', unit: 'Missions', label: 'Shipped projects' },
+  { value: '8', unit: 'Missions', label: 'Shipped projects' },
   { value: '10', unit: 'Agents', label: 'Protocol roster' },
 ]
 

@@ -250,6 +250,49 @@
   gap: 0.4rem;
 }
 
+.priorBlock {
+  margin-top: 1.25rem;
+}
+
+.priorGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+}
+
+.priorCard {
+  min-height: 100%;
+}
+
+.priorTop {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-bottom: 0.75rem;
+}
+
+.priorOrg {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 1rem;
+  letter-spacing: 0.04em;
+}
+
+.priorTitle {
+  margin: 0.35rem 0 0;
+  color: var(--accent);
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+.priorSummary {
+  margin: 0 0 0.85rem;
+  color: var(--text);
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
 @media (max-width: 900px) {
   .bento {
     grid-template-columns: 1fr;
@@ -257,6 +300,10 @@
       'hero'
       'flow'
       'tracks';
+  }
+
+  .priorGrid {
+    grid-template-columns: 1fr;
   }
 
   .header {

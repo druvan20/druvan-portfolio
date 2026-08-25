@@ -29,7 +29,7 @@ export const experience = {
   title: 'Trainee Engineer (SDE1)',
   period: 'May 27, 2026 – Present',
   phase: 'Training Phase',
-  location: 'Bengaluru',
+  location: 'Bangalore',
   summary:
     'Immersive HashedIn University (HU Spark) boot camp — product-first engineering across AI, cloud-native stacks, AIDLC, and full-stack delivery before project deployment.',
   phases: [

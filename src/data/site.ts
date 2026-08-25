@@ -140,7 +140,7 @@ export const links = {
   github: 'https://github.com/druvan20',
   linkedin: 'https://www.linkedin.com/in/druvan-gurukar/',
   email: 'druvangurukar20@gmail.com',
-  resume: '#',
+  resume: `${import.meta.env.BASE_URL}resume.pdf`,
 } as const
 
 export const navItems = [

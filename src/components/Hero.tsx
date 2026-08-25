@@ -143,7 +143,12 @@ export function Hero() {
             >
               LinkedIn
             </a>
-            <a className="btn btn-ghost" href={links.resume}>
+            <a
+              className="btn btn-ghost"
+              href={links.resume}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               Resume
             </a>
           </div>

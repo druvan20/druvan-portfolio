@@ -1,3 +1,4 @@
-# Resume placeholder
+# Resume
 
-Wire a real PDF here later and point `links.resume` in `src/data/site.ts` to it (e.g. `/resume.pdf`).
+Production file: [`public/resume.pdf`](../public/resume.pdf)  
+Wired via `links.resume` → `${import.meta.env.BASE_URL}resume.pdf` (Hero CTA).

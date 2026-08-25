@@ -4,7 +4,7 @@ from fpdf import FPDF
 PORTFOLIO = "https://druvan20.github.io/druvan-portfolio/"
 LINKEDIN = "https://www.linkedin.com/in/druvan-gurukar/"
 GITHUB = "https://github.com/druvan20"
-LEETCODE = "https://leetcode.com/u/druvan20"
+LEETCODE = "https://leetcode.com/u/vvce22cseaiml0074/"
 EMAIL = "druvangurukar20@gmail.com"
 PHONE = "+91 63619 67951"
 

@@ -23,7 +23,7 @@ function shuffleAgents() {
   return copy
 }
 
-export function Hero() {
+export function Hero({ onOpenCv }: { onOpenCv?: () => void }) {
   const { setAgent } = useAgentTheme()
   const [boot, setBoot] = useState(true)
   const [roster] = useState(() => shuffleAgents())
@@ -151,6 +151,11 @@ export function Hero() {
             >
               Resume
             </a>
+            {onOpenCv && (
+              <button type="button" className="btn btn-ghost" onClick={onOpenCv}>
+                Save as PDF
+              </button>
+            )}
           </div>
 
           <p className={`${styles.role} ${name.done ? styles.show : styles.hide}`}>{site.role}</p>

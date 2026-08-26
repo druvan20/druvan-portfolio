@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { About } from './components/About'
 import { Contact } from './components/Contact'
+import { CvDocument } from './components/CvDocument'
 import { Education } from './components/Education'
 import { Experience } from './components/Experience'
 import { Footer } from './components/Footer'
@@ -14,12 +15,13 @@ import type { Project } from './data/projects'
 
 export default function App() {
   const [dossier, setDossier] = useState<Project | null>(null)
+  const [cvOpen, setCvOpen] = useState(false)
 
   return (
     <AgentThemeProvider>
       <Nav />
       <main>
-        <Hero />
+        <Hero onOpenCv={() => setCvOpen(true)} />
         <About />
         <Experience />
         <Skills />
@@ -29,6 +31,7 @@ export default function App() {
       </main>
       <Footer />
       <MissionDossier project={dossier} onClose={() => setDossier(null)} />
+      <CvDocument open={cvOpen} onClose={() => setCvOpen(false)} />
     </AgentThemeProvider>
   )
 }

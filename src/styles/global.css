@@ -195,3 +195,41 @@ button {
     width: min(100% - 1.35rem, var(--max));
   }
 }
+
+/* LinkedIn-style CV Save as PDF (print dialog → Save as PDF) */
+@media print {
+  @page {
+    margin: 12mm;
+    size: A4;
+  }
+
+  body.cv-printing {
+    background: #fff !important;
+  }
+
+  body.cv-printing #root {
+    visibility: hidden;
+  }
+
+  body.cv-printing .cv-overlay {
+    visibility: visible !important;
+    position: absolute !important;
+    left: 0 !important;
+    top: 0 !important;
+    width: 100% !important;
+    background: #fff !important;
+    overflow: visible !important;
+    padding: 0 !important;
+    inset: auto !important;
+  }
+
+  body.cv-printing .cv-overlay * {
+    visibility: visible !important;
+  }
+
+  body.cv-printing .cv-overlay [data-cv-ui],
+  body.cv-printing .cv-overlay [data-cv-ui] * {
+    display: none !important;
+    visibility: hidden !important;
+  }
+}

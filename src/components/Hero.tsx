@@ -153,7 +153,7 @@ export function Hero({ onOpenCv }: { onOpenCv?: () => void }) {
             </a>
             {onOpenCv && (
               <button type="button" className="btn btn-ghost" onClick={onOpenCv}>
-                Save as PDF
+                Download CV
               </button>
             )}
           </div>

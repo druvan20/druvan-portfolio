@@ -38,6 +38,12 @@
   max-width: 28rem;
 }
 
+.toolbarError {
+  margin: 0.4rem 0 0;
+  color: #ff8892;
+  font-size: 0.8rem;
+}
+
 .toolbarActions {
   display: flex;
   flex-wrap: wrap;

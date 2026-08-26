@@ -1,12 +1,35 @@
 import { education } from '../data/education'
 import { experience, priorExperience } from '../data/experience'
 import { projects } from '../data/projects'
-import { skillGroups } from '../data/skills'
 import { links, site } from '../data/site'
 import styles from './CvDocument.module.css'
 
 const PHONE = '+91 63619 67951'
-const LOCATION = 'Mysuru · Bangalore, India'
+const LOCATION = 'Mysuru · Bangalore'
+const profileSrc = `${import.meta.env.BASE_URL}profile.jpg`
+
+const NAME_CHUNKS = ['DRU', 'VAN', 'G', 'N'] as const
+
+const SKILL_BARS = [
+  { label: 'Python / GenAI / Agents', pct: 90 },
+  { label: 'Java / Spring Boot', pct: 88 },
+  { label: 'LangChain / LangGraph / RAG', pct: 86 },
+  { label: 'React / TypeScript', pct: 82 },
+  { label: 'SQL / Data / Databricks', pct: 78 },
+]
+
+const STICKERS = [
+  'LangGraph',
+  'FastAPI',
+  'Spring',
+  '.NET 8',
+  'Kafka',
+  'Docker',
+  'GCP',
+  'Databricks',
+  'MLflow',
+  'JWT',
+]
 
 type Props = {
   open: boolean
@@ -16,7 +39,15 @@ type Props = {
 export function CvDocument({ open, onClose }: Props) {
   if (!open) return null
 
-  const featured = projects.filter((p) => p.starred || ['nexus-copilot', 'etl', 'agent-factory', 'foodiehub', 'smartwatch-api', 'job-portal'].includes(p.id)).slice(0, 6)
+  const featured = projects
+    .filter((p) =>
+      ['nexus-copilot', 'etl', 'agent-factory', 'foodiehub', 'smartwatch-api', 'job-portal'].includes(
+        p.id,
+      ),
+    )
+    .slice(0, 4)
+
+  const be = education.find((e) => e.id === 'be')
 
   function saveAsPdf() {
     document.body.classList.add('cv-printing')
@@ -26,19 +57,30 @@ export function CvDocument({ open, onClose }: Props) {
     }
     window.addEventListener('afterprint', cleanup)
     window.print()
-    // Fallback if afterprint never fires
-    window.setTimeout(cleanup, 1000)
+    window.setTimeout(cleanup, 1200)
   }
 
   return (
-    <div className={`${styles.overlay} cv-overlay`} role="dialog" aria-modal="true" aria-label="Curriculum Vitae">
+    <div
+      className={`${styles.overlay} cv-overlay`}
+      role="dialog"
+      aria-modal="true"
+      aria-label="Crazy CV"
+    >
       <div className={styles.toolbar} data-cv-ui>
-        <p className={styles.toolbarHint}>Preview · use Save as PDF in the print dialog (like LinkedIn)</p>
+        <p className={styles.toolbarHint}>
+          Loud CV preview · Save as PDF opens the print dialog (pick “Save as PDF”)
+        </p>
         <div className={styles.toolbarActions}>
           <button type="button" className={`btn btn-primary ${styles.toolBtn}`} onClick={saveAsPdf}>
             Save as PDF
           </button>
-          <a className={`btn btn-ghost ${styles.toolBtn}`} href={links.resume} target="_blank" rel="noopener noreferrer">
+          <a
+            className={`btn btn-ghost ${styles.toolBtn}`}
+            href={links.resume}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             ATS Resume
           </a>
           <button type="button" className={`btn btn-ghost ${styles.toolBtn}`} onClick={onClose}>
@@ -47,130 +89,171 @@ export function CvDocument({ open, onClose }: Props) {
         </div>
       </div>
 
-      <div className={styles.sheet} id="cv-sheet">
-        <header className={styles.header}>
-          <h1>{site.fullName}</h1>
-          <p className={styles.headline}>Trainee Engineer (SDE1) · Backend & Agentic Systems</p>
-          <p className={styles.meta}>
-            {LOCATION}
-            <span aria-hidden> · </span>
-            <a href={`mailto:${links.email}`}>{links.email}</a>
-            <span aria-hidden> · </span>
-            <a href={`tel:${PHONE.replace(/\s/g, '')}`}>{PHONE}</a>
-          </p>
-          <p className={styles.meta}>
-            <a href={links.linkedin} target="_blank" rel="noopener noreferrer">
-              LinkedIn
-            </a>
-            <span aria-hidden> · </span>
-            <a href={links.github} target="_blank" rel="noopener noreferrer">
-              GitHub
-            </a>
-            <span aria-hidden> · </span>
-            <a href="https://druvan20.github.io/druvan-portfolio/" target="_blank" rel="noopener noreferrer">
-              Portfolio
-            </a>
-            <span aria-hidden> · </span>
-            <a href="https://leetcode.com/u/vvce22cseaiml0074/" target="_blank" rel="noopener noreferrer">
-              LeetCode
-            </a>
-          </p>
-        </header>
+      <div className={styles.wall}>
+        <div className={styles.page} id="cv-sheet">
+          <div className={`${styles.tape} ${styles.tapeTl}`} aria-hidden />
+          <div className={`${styles.tape} ${styles.tapeTr}`} aria-hidden />
+          <div className={`${styles.tape} ${styles.tapeBr}`} aria-hidden />
+          <div className={styles.ribbon}>OPEN TO WORK</div>
 
-        <section className={styles.section}>
-          <h2>Summary</h2>
-          <p>
-            Backend and applied-AI engineer building REST APIs, microservices, and multi-agent systems
-            with Java/Spring Boot, Python/FastAPI, and .NET. Focused on recoverable workflows
-            (LangGraph), RAG pipelines, and production-minded auth/security. Currently Trainee
-            Engineer (SDE1) at Hashedin by Deloitte.
-          </p>
-        </section>
-
-        <section className={styles.section}>
-          <h2>Experience</h2>
-          <article className={styles.job}>
-            <div className={styles.jobTop}>
-              <h3>
-                {experience.title} · {experience.company}
-              </h3>
-              <span>
-                {experience.period} · {experience.location}
-              </span>
+          <header className={styles.header}>
+            <div className={styles.heroRow}>
+              <div className={styles.photoWrap}>
+                <img
+                  src={profileSrc}
+                  alt={`${site.fullName} portrait`}
+                  className={styles.photo}
+                />
+                <span className={styles.photoRing} aria-hidden />
+              </div>
+              <div className={styles.heroCopy}>
+                <div className={styles.name}>
+                  {NAME_CHUNKS.map((chunk) => (
+                    <span key={chunk}>{chunk}</span>
+                  ))}
+                </div>
+                <p className={styles.roleLine}>
+                  — trainee SDE1 · backend & agentic systems that actually ship —
+                </p>
+                <div className={styles.contactRow}>
+                  <a className={`${styles.pill} ${styles.pillHot}`} href={`mailto:${links.email}`}>
+                    {links.email}
+                  </a>
+                  <a className={styles.pill} href={`tel:${PHONE.replace(/\s/g, '')}`}>
+                    {PHONE}
+                  </a>
+                  <a className={styles.pill} href="https://druvan20.github.io/druvan-portfolio/">
+                    Portfolio
+                  </a>
+                  <a className={styles.pill} href={links.github}>
+                    GitHub
+                  </a>
+                  <a className={styles.pill} href={links.linkedin}>
+                    LinkedIn
+                  </a>
+                  <span className={styles.pill}>{LOCATION}</span>
+                </div>
+              </div>
             </div>
-            <p className={styles.muted}>{experience.program}</p>
-            <p>{experience.summary}</p>
-            <ul>
-              {experience.highlights.map((h) => (
-                <li key={h}>{h}</li>
-              ))}
-            </ul>
-          </article>
+          </header>
 
-          {priorExperience.map((role) => (
-            <article key={role.id} className={styles.job}>
-              <div className={styles.jobTop}>
-                <h3>
-                  {role.title} · {role.org}
-                </h3>
-                <span>
-                  {role.period} · {role.mode}
-                </span>
-              </div>
-              <p>{role.summary}</p>
-              <ul>
-                {role.highlights.map((h) => (
-                  <li key={h}>{h}</li>
+          <section className={styles.section}>
+            <div className={styles.sectionTitle}>The pitch</div>
+            <div className={styles.about}>
+              Building <strong>multi-agent</strong> and backend systems at{' '}
+              <strong>Hashedin by Deloitte</strong> — LangGraph workflows, RAG pipelines, Spring /
+              FastAPI / .NET services, and enough observability to trust what the agents decide.
+              B.E. CSE (AI/ML) · 9.5 CGPA. Loud portfolio, serious shipping.
+            </div>
+          </section>
+
+          <div className={styles.grid2}>
+            <div>
+              <section className={styles.section}>
+                <div className={styles.sectionTitle}>Where I&apos;ve worked</div>
+
+                <div className={styles.job}>
+                  <div className={styles.jobHead}>
+                    <span className={styles.jobTitle}>{experience.title}</span>
+                    <span className={styles.jobMeta}>{experience.period}</span>
+                  </div>
+                  <div className={styles.jobCompany}>@ {experience.company}</div>
+                  <ul>
+                    {experience.highlights.map((h) => (
+                      <li key={h}>{h}</li>
+                    ))}
+                  </ul>
+                  <span className={styles.stamp}>★ HU SPARK · {experience.location}</span>
+                </div>
+
+                {priorExperience.map((role) => (
+                  <div key={role.id} className={styles.job}>
+                    <div className={styles.jobHead}>
+                      <span className={styles.jobTitle}>{role.title}</span>
+                      <span className={styles.jobMeta}>{role.period}</span>
+                    </div>
+                    <div className={styles.jobCompany}>
+                      @ {role.org} · {role.mode}
+                    </div>
+                    <ul>
+                      {role.highlights.map((h) => (
+                        <li key={h}>{h}</li>
+                      ))}
+                    </ul>
+                  </div>
                 ))}
-              </ul>
-            </article>
-          ))}
-        </section>
+              </section>
 
-        <section className={styles.section}>
-          <h2>Projects</h2>
-          {featured.map((p) => (
-            <article key={p.id} className={styles.job}>
-              <div className={styles.jobTop}>
-                <h3>{p.title}</h3>
-                <span>{p.missionCode}</span>
-              </div>
-              <p className={styles.muted}>{p.stack.join(' · ')}</p>
-              <p>{p.description}</p>
-              <ul>
-                {p.highlights.slice(0, 3).map((h) => (
-                  <li key={h}>{h}</li>
+              <section className={styles.section}>
+                <div className={styles.sectionTitle}>Things I built</div>
+                {featured.map((p) => (
+                  <div key={p.id} className={styles.projectCard}>
+                    <div className={styles.projectTitle}>
+                      {p.title.replace(/ — .*$/, '')}{' '}
+                      <span className={styles.editTag}>{p.missionCode}</span>
+                    </div>
+                    <div className={styles.projectSub}>{p.stack.slice(0, 5).join(' · ')}</div>
+                    <p>{p.description.slice(0, 180)}{p.description.length > 180 ? '…' : ''}</p>
+                  </div>
                 ))}
-              </ul>
-            </article>
-          ))}
-        </section>
+              </section>
+            </div>
 
-        <section className={styles.section}>
-          <h2>Skills</h2>
-          {skillGroups.map((g) => (
-            <p key={g.id} className={styles.skillLine}>
-              <strong>{g.title}:</strong> {g.skills.join(', ')}
-            </p>
-          ))}
-        </section>
+            <div>
+              <section className={styles.section}>
+                <div className={styles.sectionTitle}>Tape deck</div>
+                {SKILL_BARS.map((s) => (
+                  <div key={s.label} className={styles.skill}>
+                    <div className={styles.skillLabel}>
+                      <span>{s.label}</span>
+                      <span>{s.pct}%</span>
+                    </div>
+                    <div className={styles.reelTrack}>
+                      <div className={styles.reelFill} style={{ width: `${s.pct}%` }} />
+                    </div>
+                  </div>
+                ))}
+              </section>
 
-        <section className={styles.section}>
-          <h2>Education</h2>
-          {education.map((ed) => (
-            <article key={ed.id} className={styles.job}>
-              <div className={styles.jobTop}>
-                <h3>
-                  {ed.level} · {ed.institution}
-                </h3>
-                <span>
-                  {ed.year} · {ed.score}
-                </span>
-              </div>
-              <p className={styles.muted}>{ed.focus}</p>
-            </article>
-          ))}
-        </section>
+              <section className={styles.section}>
+                <div className={styles.sectionTitle}>Also fluent in</div>
+                <div className={styles.stickerWrap}>
+                  {STICKERS.map((s) => (
+                    <span key={s} className={styles.sticker}>
+                      {s}
+                    </span>
+                  ))}
+                </div>
+              </section>
+
+              <section className={styles.section}>
+                <div className={styles.sectionTitle}>School stuff</div>
+                {be && (
+                  <div className={styles.eduCard}>
+                    <div className={styles.eduTitle}>{be.level}</div>
+                    <div className={styles.eduSub}>
+                      {be.institution} · {be.year} · {be.score}
+                    </div>
+                  </div>
+                )}
+                {education
+                  .filter((e) => e.id !== 'be')
+                  .map((ed) => (
+                    <div key={ed.id} className={styles.eduCard}>
+                      <div className={styles.eduTitle}>{ed.level}</div>
+                      <div className={styles.eduSub}>
+                        {ed.institution} · {ed.score}
+                      </div>
+                    </div>
+                  ))}
+              </section>
+            </div>
+          </div>
+
+          <footer className={styles.footer}>
+            references, repos, and agent demos → portfolio + github on request →
+          </footer>
+        </div>
       </div>
     </div>
   )

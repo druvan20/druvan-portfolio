@@ -165,7 +165,7 @@ def build():
     pdf.section("Experience")
     pdf.role_line(
         "Trainee Engineer (SDE1) - Hashedin by Deloitte",
-        "April 2026 - Present | Bangalore, India",
+        "April 27, 2026 - Present | Bangalore, India",
     )
     pdf.ln(1)
 

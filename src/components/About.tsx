@@ -100,7 +100,7 @@ export function About() {
             <article className={`${styles.card} ${styles.now}`}>
               <p className={styles.cardLabel}>Now deploying</p>
               <p className={styles.nowTitle}>Hashedin by Deloitte</p>
-              <p className={styles.nowMeta}>Trainee Engineer (SDE1) · May 2026 – Present</p>
+              <p className={styles.nowMeta}>Trainee Engineer (SDE1) · April 27, 2026 – Present</p>
               <ul className={styles.nowList}>
                 <li>HU Spark tracks: Prompt Eng · AIDLC · Adv DE + AIML</li>
                 <li>Python · Java · Angular · GenAI · Databricks</li>

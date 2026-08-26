@@ -44,7 +44,7 @@ A single-page personal portfolio for **Druvan Gurukar**, Trainee Engineer at Has
 
 ### Experience
 - Hashedin by Deloitte — Trainee Engineer (SDE1)
-- May 27, 2026 – Present \| Training Phase
+- April 27, 2026 – Present \| Training Phase
 - Bullets: full-stack + AI/ML tracks; Python/Java/Angular/GenAI; enterprise patterns (microservices, JWT, OWASP, OAuth)
 
 ### Education

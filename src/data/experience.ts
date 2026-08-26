@@ -27,7 +27,7 @@ export const experience = {
   company: 'Hashedin by Deloitte',
   program: 'HashedIn University · HU Spark',
   title: 'Trainee Engineer (SDE1)',
-  period: 'May 27, 2026 – Present',
+  period: 'April 27, 2026 – Present',
   phase: 'Training Phase',
   location: 'Bangalore',
   summary:

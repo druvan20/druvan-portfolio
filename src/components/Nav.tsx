@@ -24,6 +24,15 @@ export function Nav() {
   }, [open])
 
   useEffect(() => {
+    if (!open) return
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setOpen(false)
+    }
+    window.addEventListener('keydown', onKey)
+    return () => window.removeEventListener('keydown', onKey)
+  }, [open])
+
+  useEffect(() => {
     const sections = SECTION_IDS.map((id) => document.getElementById(id)).filter(
       (el): el is HTMLElement => !!el,
     )
@@ -49,7 +58,16 @@ export function Nav() {
   }, [])
 
   return (
-    <header className={`${styles.nav} ${scrolled || open ? styles.scrolled : ''}`}>
+    <header className={styles.nav}>
+      {/*
+        Blur must NOT wrap the drawer. backdrop-filter on an ancestor makes
+        position:fixed children size to the 68px header — mobile menu looks like only an X.
+      */}
+      <div
+        className={`${styles.chrome} ${scrolled || open ? styles.chromeOn : ''}`}
+        aria-hidden
+      />
+
       <div className={`container ${styles.inner}`}>
         <a href="#protocol" className={styles.brand} onClick={() => setOpen(false)}>
           <span className={styles.brandMark}>DG</span>
@@ -57,6 +75,7 @@ export function Nav() {
         </a>
 
         <button
+          type="button"
           className={`${styles.menuBtn} ${open ? styles.menuBtnOpen : ''}`}
           aria-expanded={open}
           aria-controls="primary-nav"
@@ -68,14 +87,13 @@ export function Nav() {
           <span />
         </button>
 
-        {open && (
-          <button
-            type="button"
-            className={styles.backdrop}
-            aria-label="Close menu"
-            onClick={() => setOpen(false)}
-          />
-        )}
+        <button
+          type="button"
+          className={`${styles.backdrop} ${open ? styles.backdropShow : ''}`}
+          aria-label="Close menu"
+          tabIndex={open ? 0 : -1}
+          onClick={() => setOpen(false)}
+        />
 
         <nav
           id="primary-nav"

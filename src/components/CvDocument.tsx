@@ -1,3 +1,6 @@
+import { useState } from 'react'
+import html2canvas from 'html2canvas'
+import { jsPDF } from 'jspdf'
 import { education } from '../data/education'
 import { experience, priorExperience } from '../data/experience'
 import { projects } from '../data/projects'
@@ -37,6 +40,9 @@ type Props = {
 }
 
 export function CvDocument({ open, onClose }: Props) {
+  const [busy, setBusy] = useState(false)
+  const [error, setError] = useState<string | null>(null)
+
   if (!open) return null
 
   const featured = projects
@@ -49,7 +55,58 @@ export function CvDocument({ open, onClose }: Props) {
 
   const be = education.find((e) => e.id === 'be')
 
-  function saveAsPdf() {
+  async function downloadPdf() {
+    const el = document.getElementById('cv-sheet')
+    if (!el) return
+
+    setBusy(true)
+    setError(null)
+
+    try {
+      await new Promise((r) => window.setTimeout(r, 60))
+
+      const canvas = await html2canvas(el, {
+        scale: Math.min(2, window.devicePixelRatio || 1.5),
+        useCORS: true,
+        allowTaint: false,
+        backgroundColor: '#fdf6e7',
+        logging: false,
+        scrollX: 0,
+        scrollY: 0,
+        windowWidth: el.scrollWidth,
+        windowHeight: el.scrollHeight,
+      })
+
+      const imgData = canvas.toDataURL('image/jpeg', 0.92)
+      const pdf = new jsPDF({ orientation: 'p', unit: 'mm', format: 'a4' })
+      const pageW = pdf.internal.pageSize.getWidth()
+      const pageH = pdf.internal.pageSize.getHeight()
+      const imgW = pageW
+      const imgH = (canvas.height * imgW) / canvas.width
+
+      let heightLeft = imgH
+      let y = 0
+
+      pdf.addImage(imgData, 'JPEG', 0, y, imgW, imgH)
+      heightLeft -= pageH
+
+      while (heightLeft > 1) {
+        y = heightLeft - imgH
+        pdf.addPage()
+        pdf.addImage(imgData, 'JPEG', 0, y, imgW, imgH)
+        heightLeft -= pageH
+      }
+
+      pdf.save('Druvan_Gurukar_CV.pdf')
+    } catch (err) {
+      console.error(err)
+      setError('PDF export failed — use ATS Resume, or try Print.')
+    } finally {
+      setBusy(false)
+    }
+  }
+
+  function printFallback() {
     document.body.classList.add('cv-printing')
     const cleanup = () => {
       document.body.classList.remove('cv-printing')
@@ -57,7 +114,7 @@ export function CvDocument({ open, onClose }: Props) {
     }
     window.addEventListener('afterprint', cleanup)
     window.print()
-    window.setTimeout(cleanup, 1200)
+    window.setTimeout(cleanup, 1500)
   }
 
   return (
@@ -68,18 +125,35 @@ export function CvDocument({ open, onClose }: Props) {
       aria-label="Crazy CV"
     >
       <div className={styles.toolbar} data-cv-ui>
-        <p className={styles.toolbarHint}>
-          Loud CV preview · Save as PDF opens the print dialog (pick “Save as PDF”)
-        </p>
+        <div>
+          <p className={styles.toolbarHint}>
+            Downloads a real PDF file of this loud CV (phone + desktop).
+          </p>
+          {error ? <p className={styles.toolbarError}>{error}</p> : null}
+        </div>
         <div className={styles.toolbarActions}>
-          <button type="button" className={`btn btn-primary ${styles.toolBtn}`} onClick={saveAsPdf}>
-            Save as PDF
+          <button
+            type="button"
+            className={`btn btn-primary ${styles.toolBtn}`}
+            onClick={() => void downloadPdf()}
+            disabled={busy}
+          >
+            {busy ? 'Building PDF…' : 'Download CV PDF'}
+          </button>
+          <button
+            type="button"
+            className={`btn btn-ghost ${styles.toolBtn}`}
+            onClick={printFallback}
+            disabled={busy}
+          >
+            Print
           </button>
           <a
             className={`btn btn-ghost ${styles.toolBtn}`}
             href={links.resume}
             target="_blank"
             rel="noopener noreferrer"
+            download="Druvan_Gurukar_Resume.pdf"
           >
             ATS Resume
           </a>
@@ -103,6 +177,7 @@ export function CvDocument({ open, onClose }: Props) {
                   src={profileSrc}
                   alt={`${site.fullName} portrait`}
                   className={styles.photo}
+                  crossOrigin="anonymous"
                 />
                 <span className={styles.photoRing} aria-hidden />
               </div>
@@ -193,7 +268,10 @@ export function CvDocument({ open, onClose }: Props) {
                       <span className={styles.editTag}>{p.missionCode}</span>
                     </div>
                     <div className={styles.projectSub}>{p.stack.slice(0, 5).join(' · ')}</div>
-                    <p>{p.description.slice(0, 180)}{p.description.length > 180 ? '…' : ''}</p>
+                    <p>
+                      {p.description.slice(0, 180)}
+                      {p.description.length > 180 ? '…' : ''}
+                    </p>
                   </div>
                 ))}
               </section>
